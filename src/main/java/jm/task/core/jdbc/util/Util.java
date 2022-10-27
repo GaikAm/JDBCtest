@@ -42,13 +42,13 @@ public class Util {
         }
 
         // === Hibernate ===
-        try {
+        /*try {
             sessionFactory = new Configuration()
                     .addAnnotatedClass(User.class)
                     .buildSessionFactory();
         } catch (HibernateException e) {
             System.out.println("Соединение не установлено!");
-        }
+        }*/
     }
 
     public Connection getConnection() { return connection; }
