@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDaoJDBCImpl implements UserDao {
+public class UserDaoJDBCImpl implements UserDao, AutoCloseable {
 
     private static String CREATE_TABLE = "CREATE TABLE `testbase`.`users` (\n" +
             "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
@@ -30,7 +30,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void createUsersTable() {
         try (Statement statement = util.getConnection().createStatement()) {
-            statement.execute(CREATE_TABLE);
+            statement.executeUpdate(CREATE_TABLE);
         } catch (SQLException e) {
             System.out.println("Ошибка создания таблицы");
         }
@@ -38,7 +38,8 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void dropUsersTable() {
         try (Statement statement = util.getConnection().createStatement()) {
-            statement.execute(DROP_TABLE);
+            statement.executeUpdate(DROP_TABLE);
+
         } catch (SQLException e) {
             System.out.println("Ошибка удаления таблицы");
         }
@@ -90,5 +91,10 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             System.out.println("Ошибка очистки таблицы");
         }
+    }
+
+    @Override
+    public void close() throws Exception {
+        util.close();
     }
 }

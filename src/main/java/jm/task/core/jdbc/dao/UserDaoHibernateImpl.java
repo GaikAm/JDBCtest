@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-public class UserDaoHibernateImpl implements UserDao {
+public class UserDaoHibernateImpl /*implements UserDao*/ {
 
     private static String CREATE_TABLE = "CREATE TABLE `testbase`.`users` (\n" +
             "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
@@ -26,7 +26,7 @@ public class UserDaoHibernateImpl implements UserDao {
     }
 
 
-    @Override
+    /*@Override
     public void createUsersTable() {
         try (Statement statement = util.getConnection().createStatement()) {
             statement.execute(CREATE_TABLE);
@@ -94,5 +94,5 @@ public class UserDaoHibernateImpl implements UserDao {
         } catch (HibernateException e) {
             System.out.println("Не удалось очистить таблицу");
         }
-    }
+    }*/
 }

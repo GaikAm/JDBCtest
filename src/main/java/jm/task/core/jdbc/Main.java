@@ -23,5 +23,11 @@ public class Main {
         userService.cleanUsersTable();
         System.out.println(userService.getAllUsers());
         userService.dropUsersTable();
+
+        try {
+            userService.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
